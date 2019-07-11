@@ -34,7 +34,7 @@ Flag dev {
 }
 
 
-Executable elm
+Executable hacked-elm
     if flag(dev)
         ghc-options: -O0 -Wall -Werror
     else
@@ -201,6 +201,9 @@ Executable elm
         Type.Unify
         Type.UnionFind
         Paths_elm
+
+        -- MY HACK
+        AST.DeclarationUsages
 
     Build-depends:
         ansi-terminal >= 0.8 && < 0.9,

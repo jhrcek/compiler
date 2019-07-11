@@ -57,6 +57,7 @@ import qualified Reporting.Exit as Exit
 import qualified Reporting.Render.Type.Localizer as L
 import qualified Stuff
 
+import qualified AST.DeclarationUsages as DeclarationUsages
 
 
 -- ENVIRONMENT
@@ -284,9 +285,12 @@ crawlModule env@(Env _ root projectType srcDirs buildID locals foreigns) mvar do
                       crawlFile env mvar docsNeed name path newTime buildID
 
                     Just local@(Details.Local oldPath oldTime deps _ lastChange _) ->
-                      if path /= oldPath || oldTime /= newTime || needsDocs docsNeed
-                      then crawlFile env mvar docsNeed name path newTime lastChange
-                      else crawlDeps env mvar deps (SCached local)
+                      -- if path /= oldPath || oldTime /= newTime || needsDocs docsNeed
+                      -- then crawlFile env mvar docsNeed name path newTime lastChange
+                      -- else crawlDeps env mvar deps (SCached local)
+                      
+                      -- Disable the "should recompile" check to always recompile regardless of cache status
+                      crawlFile env mvar docsNeed name path newTime lastChange
 
         p1:p2:ps ->
           return $ SBadImport $ Import.AmbiguousLocal (FP.makeRelative root p1) (FP.makeRelative root p2) (map (FP.makeRelative root) ps)
@@ -706,7 +710,9 @@ compile (Env key root projectType _ buildID _ _) docsNeed (Details.Local path ti
     pkg = projectTypeToPkg projectType
   in
   case Compile.compile pkg ifaces modul of
-    Right (Compile.Artifacts canonical annotations objects) ->
+    Right (Compile.Artifacts canonical annotations objects) -> do
+      DeclarationUsages.writeUsagesToFile canonical
+
       case makeDocs docsNeed canonical of
         Left err ->
           return $ RProblem $
