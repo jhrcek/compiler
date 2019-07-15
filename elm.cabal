@@ -227,7 +227,7 @@ library
         snap-core,
         snap-server,
         template-haskell,
-        time >= 1.9.1,
+        time,
         unordered-containers,
         utf8-string,
         vector,

@@ -46,7 +46,9 @@ newtype Time = Time Fixed.Pico
 getTime :: FilePath -> IO Time
 getTime path =
   fmap
-    (Time . Time.nominalDiffTimeToSeconds . Time.utcTimeToPOSIXSeconds)
+    -- A hack to make elm not depend on time-1.9.3, which is not in stack lts yet
+    -- originally `Time . Time.nominalDiffTimeToSeconds . Time.utcTimeToPOSIXSeconds`
+    (const zeroTime)
     (Dir.getModificationTime path)
 
 

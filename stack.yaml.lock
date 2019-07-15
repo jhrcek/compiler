@@ -33,12 +33,12 @@ packages:
   original:
     hackage: network-2.6.3.6@sha256:1ca79d81af02d7acd6032d5e6c9bde4618a8fdcfbe19bd42b49d420183975df0
 - completed:
-    hackage: time-1.9.3@sha256:8f1b5448722a12a952248b356c9eb366e351226543d9086a2da71270522d5f45,5679
+    hackage: time-1.8.0.4@sha256:3f6eddf238b828eb4f82683acce1c3afe64784f0d20114239b738c123316c85c,5494
     pantry-tree:
-      size: 6558
-      sha256: a1043c1719491764f0fa37a1fd70d9451080548a41632fee88d8e1b8db4942d6
+      size: 5406
+      sha256: 1a186b21ff55d3e8f7d66ed2075bbce4dcc9ccaeef87665aa88752412f14073f
   original:
-    hackage: time-1.9.3@sha256:8f1b5448722a12a952248b356c9eb366e351226543d9086a2da71270522d5f45
+    hackage: time-1.8.0.4@sha256:3f6eddf238b828eb4f82683acce1c3afe64784f0d20114239b738c123316c85c,5494
 - completed:
     hackage: binary-0.8.7.0@sha256:ae3e6cca723ac55c54bbb3fa771bcf18142bc727afd57818e66d6ee6c8044f12,7705
     pantry-tree:
